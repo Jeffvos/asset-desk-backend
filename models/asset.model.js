@@ -31,6 +31,10 @@ const assetSchema = new Schema({
   },
   assetUser: {
     type: String
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 
