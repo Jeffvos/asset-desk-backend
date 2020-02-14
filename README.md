@@ -7,15 +7,18 @@ GET
 
 Lists all assets
 
+
 GET
 /assets/{id}
 
 Lists single asset
 
+
 DELETE
 /assets/{id}
 
 Deletes single asset
+
 
 POST
 /assets/add
@@ -31,6 +34,7 @@ Adds new asset
 	"assetdep":"dev"
 }
 
+
 POST
 /assets/update/{id}
 updates single asset
@@ -42,6 +46,7 @@ updates single asset
 	"assetstatus":"Ready",
 	"assetdep":"dev"
 }
+
 
 POST
 /assets/update/{id}/user
