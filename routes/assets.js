@@ -1,13 +1,14 @@
 const router = require("express").Router();
+const verify = require("../verify-token");
 let Asset = require("../models/asset.model");
 
-router.route("/").get((req, res) => {
+router.route("/").get(verify, (req, res) => {
   Asset.find()
     .then(assets => res.json(assets))
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-router.route("/add").post((req, res) => {
+router.route("/add").post(verify, (req, res) => {
   const assetID = req.body.assetid;
   const assetSN = req.body.assetsn;
   const assetVendor = req.body.assetvendor;
@@ -30,19 +31,19 @@ router.route("/add").post((req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-router.route("/:id").get((req, res) => {
+router.route("/:id").get(verify, (req, res) => {
   Asset.findById(req.params.id)
     .then(asset => res.json(asset))
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-router.route(":/id").delete((req, res) => {
+router.route(":/id").delete(verify, (req, res) => {
   Asset.findOneAndDelete(req.params.id)
     .then(() => res.json("Asset deleted"))
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-router.route("/update/:id").post((req, res) => {
+router.route("/update/:id").post(verify, (req, res) => {
   Asset.findById(req.params.id)
     .then(asset => {
       asset.assetID = req.body.assetid;
@@ -60,7 +61,7 @@ router.route("/update/:id").post((req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-router.route("/update/:id/user").post((req, res) => {
+router.route("/update/:id/user").post(verify, (req, res) => {
   Asset.findById(req.params.id)
     .then(asset => {
       asset.assetUser = req.body.assetuser;

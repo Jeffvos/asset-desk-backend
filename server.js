@@ -23,8 +23,10 @@ connection.once("open", () => {
 });
 
 const assetsRouter = require("./routes/assets");
+const authRouter = require("./routes/auth");
 
 app.use("/assets", assetsRouter);
+app.use("/auth", authRouter);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
