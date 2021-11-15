@@ -26,9 +26,9 @@ const assetsRouter = require('./routes/assets');
 const employeesRouter = require('./routes/employees');
 const authRouter = require('./routes/auth');
 
-app.use('/assets', assetsRouter);
-app.use('/employees', employeesRouter);
-app.use('/auth', authRouter);
+app.use('/api/assets', assetsRouter);
+app.use('/api/employees', employeesRouter);
+app.use('/api/auth', authRouter);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

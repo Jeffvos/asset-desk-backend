@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const verify = require('../verify-token');
+const verify = require('../validation/verify-token');
 const Employee = require('../models/employees.model');
 
 router.route('/').get(verify, (req, res) => {

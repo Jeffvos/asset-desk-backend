@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const verify = require('../verify-token');
+const verify = require('../validation/verify-token');
 let Asset = require('../models/asset.model');
 
 router.route('/').get(verify, (req, res) => {
@@ -9,6 +9,7 @@ router.route('/').get(verify, (req, res) => {
 });
 
 router.route('/add').post(verify, (req, res) => {
+  //expected fields
   const assetID = req.body.assetid;
   const assetSN = req.body.assetsn;
   const assetVendor = req.body.assetvendor;
