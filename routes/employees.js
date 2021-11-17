@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const verify = require('../validation/verify-token');
 const Employee = require('../models/employees.model');
+const { registrationEmployeeValidation } = require("../validation/validation")
 
 router.route('/').get(verify, (req, res) => {
   Employee.find()
@@ -9,6 +10,12 @@ router.route('/').get(verify, (req, res) => {
 });
 
 router.route('/add').post(verify, (req, res) => {
+  const {error} = registrationEmployeeValidation(req.body)
+  if(error) return res.status(400).json(error.details[0].message);
+
+  const emailExist =  await Employee.findOne({ email: req.body.email });
+  if(emailExist) return res.status(400).json("Email already exists");
+  
   const name = req.body.name;
   const email = req.body.email;
   const department = req.body.department;
