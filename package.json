@@ -19,6 +19,6 @@
     "dotenv": "^8.2.0",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^6.4.6"
+    "mongoose": "^6.12.0"
   }
 }
